@@ -34,12 +34,14 @@ public class TodoService {
 
         String weather = weatherClient.getTodayWeather();
 
+        // 여기서 new Manager(user, this) 생성 후 mangers 리스트에 Manager 추가
         Todo newTodo = new Todo(
                 todoSaveRequest.getTitle(),
                 todoSaveRequest.getContents(),
                 weather,
                 user
         );
+        // 여기서 cascade 작동, DBdp Todoo랑 managers 리스트 안의 Manager도 같이 저장
         Todo savedTodo = todoRepository.save(newTodo);
 
         return new TodoSaveResponse(
