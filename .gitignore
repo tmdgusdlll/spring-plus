@@ -38,3 +38,9 @@ out/
 
 ### properties ###
 *.properties
+
+### yml ###
+*.yml
+
+### .env ###
+.env
