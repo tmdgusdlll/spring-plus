@@ -6,7 +6,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 public interface TodoRepository extends JpaRepository<Todo, Long> {
@@ -18,4 +20,16 @@ public interface TodoRepository extends JpaRepository<Todo, Long> {
             "LEFT JOIN t.user " +
             "WHERE t.id = :todoId")
     Optional<Todo> findByIdWithUser(@Param("todoId") Long todoId);
+
+    // 날씨, 수정일 조건
+    @Query("SELECT t FROM Todo t " +
+            "WHERE (:weather IS NULL OR t.weather = :weather)" +
+            "AND (:startDate IS NULL OR t.modifiedAt >= :startDate)" +
+            "AND (:endDate IS NULL OR t.modifiedAt <= :endDate)")
+    Page<Todo> findTodosByWeatherAndModifiedAt(
+            @Param("weather") String weather,
+            @Param("startDate") LocalDateTime startDate,
+            @Param("endDate") LocalDateTime endDate,
+            Pageable pageable);
+
 }
