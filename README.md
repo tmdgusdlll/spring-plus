@@ -40,7 +40,8 @@
 
 [Presigned URL 발급] 
 
-추가 예정
+<img width="600" height="300" alt="image" src="https://github.com/user-attachments/assets/53dbf578-ab62-4fa2-8913-3e13d4bd79f9" />
+
 
 [S3 업로드 확인]
 
