@@ -1,6 +1,12 @@
 spring:
   config:
     import: "aws-parameterstore:/prod/damm/"
+  cloud:
+    aws:
+      s3:
+        bucket: plus-damm-files
+      region:
+        static: ap-northeast-2
   datasource:
     url: ${DATABASE_URL}
     username: ${DATABASE_USERNAME}
