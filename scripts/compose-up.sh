@@ -30,6 +30,8 @@ else
   # 로컬 환경: docker-compose가 알아서 프로젝트 폴더의 로컬 .env를 읽음
   export SPRING_PROFILES_ACTIVE=docker
 
+fi
+
 echo "=== [1/2] Gradle bootJar 빌드 시작 ==="
 ./gradlew bootJar
 
