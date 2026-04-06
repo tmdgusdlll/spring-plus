@@ -13,3 +13,7 @@ spring:
     redis:
       host: ${SPRING_DATA_REDIS_HOST:redis}
       port: 6379
+
+logging:
+  level:
+    io.awspring.cloud: DEBUG
