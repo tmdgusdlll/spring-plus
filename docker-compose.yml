@@ -45,11 +45,7 @@ services:
       # IDE에서 직접 실행할 때와 달리 localhost가 아니라 redis로 지정해야 한다.
       - SPRING_PROFILES_ACTIVE=${SPRING_PROFILES_ACTIVE}
       - SPRING_DATA_REDIS_HOST=redis   # application-docker.yml 의 ${SPRING_DATA_REDIS_HOST}
-      - JWT_SECRET_KEY=${JWT_SECRET_KEY}
-      - DATABASE_URL=jdbc:mysql://host.docker.internal:3306/damm
-      - DATABASE_URL=${DATABASE_URL}
       - DATABASE_USERNAME=root
-      - DATABASE_PASSWORD=${DATABASE_PASSWORD}
 
     depends_on:
       redis:
