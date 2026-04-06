@@ -12,14 +12,16 @@
 # ================================================================
 set -e   # 중간 명령 실패 시 즉시 종료 (bootJar 실패 → compose up 건너뜀)
 
+export PATH=$PATH:/home/ssm-user/.local/bin
+
 MODE=${1:-local}
 
 if [ "$MODE" == "prod" ]; then
   echo "=== [0/3] [PROD 모드] AWS Parameter Store 환경변수 로드 ==="
   # EC2 배포 환경: AWS에서 값을 땡겨와서 메모리에 올림
-  export DATABASE_URL=$(aws ssm get-parameter --name "/prod/damm/DATABASE_URL" --with-decryption --query "Parameter.Value" --output text)
-  export DATABASE_PASSWORD=$(aws ssm get-parameter --name "/prod/damm/DATABASE_PASSWORD" --with-decryption --query "Parameter.Value" --output text)
-  export JWT_SECRET_KEY=$(aws ssm get-parameter --name "/prod/damm/JWT_SECRET_KEY" --with-decryption --query "Parameter.Value" --output text)
+  #export DATABASE_URL=$(aws ssm get-parameter --name "/prod/damm/DATABASE_URL" --with-decryption --query "Parameter.Value" --output text)
+  #export DATABASE_PASSWORD=$(aws ssm get-parameter --name "/prod/damm/DATABASE_PASSWORD" --with-decryption --query "Parameter.Value" --output text)
+  #export JWT_SECRET_KEY=$(aws ssm get-parameter --name "/prod/damm/JWT_SECRET_KEY" --with-decryption --query "Parameter.Value" --output text)
 
   export SPRING_PROFILES_ACTIVE=prod
   export SPRING_DATA_REDIS_HOST=redis
