@@ -36,8 +36,8 @@ echo "=== [1/2] Gradle bootJar 빌드 시작 ==="
 ./gradlew bootJar
 
 echo "=== [2/2] Docker Compose 풀스택 기동 ==="
-docker compose up -d --build
+docker-compose up -d --build
 
 
 echo "=== 기동 완료 — 앱 로그 출력 시작 (중지: Ctrl+C) ==="
-docker compose logs -f app
+docker-compose logs -f app
