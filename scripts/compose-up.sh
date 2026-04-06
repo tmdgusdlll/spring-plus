@@ -25,7 +25,7 @@ if [ "$MODE" == "prod" ]; then
 
   export SPRING_PROFILES_ACTIVE=prod
   export SPRING_DATA_REDIS_HOST=redis
-  export DATABASE_USERNAME=root
+  export DATABASE_USERNAME=admin
 
 else
   echo "=== [0/3] [LOCAL 모드] 기존 로컬 .env 파일 사용 ==="
