@@ -53,9 +53,26 @@ public class UserService {
         }
     }
 
-    // nickname으로 유저 목록 조회
-    @Cacheable(value = "userCache", key = "#nickname")
+    // nickname으로 유저 목록 조회 (인덱스 버전: 쿼리에 인덱스 생성하고 호출 할 것)
     public List<SearchUserResponse> searchUsers(String nickname) {
+        long start = System.currentTimeMillis();
+
+        List<SearchUserResponse> result = userRepository.findUserByNickname(nickname)
+                .stream()
+                .map(user ->
+                        new SearchUserResponse(user.getId(), user.getEmail(), user.getNickname()))
+                .toList();
+
+        long end = System.currentTimeMillis();
+        System.out.println("검색 소요시간: " + (end-start) + "ms");
+
+        return result;
+    }
+    // nickname으로 유저 목록 조회 (캐시 버전)
+    // 1. 인덱스 추가 없이 캐시만으로 테스트
+    // 2. 인덱스 추가 후 인덱스 + 캐시로 테스트
+    @Cacheable(value = "userCache", key = "#nickname")
+    public List<SearchUserResponse> searchUsersWithCache(String nickname) {
         long start = System.currentTimeMillis();
 
         List<SearchUserResponse> result = userRepository.findUserByNickname(nickname)

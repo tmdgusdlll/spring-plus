@@ -27,6 +27,7 @@ public class SecurityConfig {
                 .addFilterBefore(jwtFilter, SecurityContextHolderAwareRequestFilter.class)
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/auth/**").permitAll() // 회원가입, 로그인은 모두 허용
+                        .requestMatchers("/health/**").permitAll() // 헬스체크
                         .requestMatchers("/admin/**").hasRole("ADMIN") // admin 관련 요청은 ADMIN만
                         .anyRequest().authenticated() // 그 외는 인증된 유저면 접근 가능
                 )
